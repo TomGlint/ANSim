@@ -1,0 +1,39 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "make dist clean and compile",
+            "type": "shell",
+            "command": "make distclean; make clean; make -j3",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "run async Synth",
+            "type": "shell",
+            "command": "./booksim examples/8x8MeshAsync",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "run async PARSEC",
+            "type": "shell",
+            "command": "./booksim examples/asyncRouterParsec",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "make clean and compile",
+            "type": "shell",
+            "command": "make clean; make -j3",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}
