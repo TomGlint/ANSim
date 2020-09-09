@@ -20,5 +20,5 @@ make
 To run the simulator
 booksim <configuration file> [(over ride configuration separated by space) eg wait_for_tail_credit=1]
   
-or take peed at run.sh for example
+or take peek at run.sh for example
   
