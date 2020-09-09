@@ -24,5 +24,7 @@ If you use ANSim in your research, we would appreciate the following citation in
 
 > booksim <configuration file> [(over ride configuration separated by space) eg wait_for_tail_credit=1]
   
-or take peek at run.sh for example
+or take a peek at run.sh for example simulation
+
+
   
