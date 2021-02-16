@@ -82,10 +82,19 @@ public:
   virtual long long int dest(long long int source);
 };
 
+
 class NeighborTrafficPattern : public DigitPermutationTrafficPattern
 {
 public:
   NeighborTrafficPattern(long long int nodes, long long int k, long long int n, long long int xr = 1);
+  virtual long long int dest(long long int source);
+};
+
+//NonUniform
+class NonUniformTrafficPattern : public DigitPermutationTrafficPattern
+{
+public:
+  NonUniformTrafficPattern(long long int nodes, long long int k, long long int n, long long int xr = 1);
   virtual long long int dest(long long int source);
 };
 
@@ -112,6 +121,7 @@ public:
   UniformRandomTrafficPattern(long long int nodes);
   virtual long long int dest(long long int source);
 };
+
 
 class UniformBackgroundTrafficPattern : public RandomTrafficPattern
 {

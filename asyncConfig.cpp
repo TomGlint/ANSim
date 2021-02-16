@@ -175,7 +175,12 @@ void AsyncConfig::readSwAllocDelays(const Configuration &config)
     {
         swAllocDelays.push_back(atoll(params[i].c_str()));
         vector<long long int> tempVec;
-        //now only supporting 5 output ports
+        //now only supporting upto 10 output ports
+        tempVec.push_back(0);
+        tempVec.push_back(0);
+        tempVec.push_back(0);
+        tempVec.push_back(0);
+        tempVec.push_back(0);
         tempVec.push_back(0);
         tempVec.push_back(0);
         tempVec.push_back(0);

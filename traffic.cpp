@@ -94,6 +94,7 @@ TrafficPattern *TrafficPattern::New(string const &pattern, long long int nodes,
   else if (pattern_name == "uniform")
   {
     result = new UniformRandomTrafficPattern(nodes);
+    printf("The total Number of nodes is : %lld\n",nodes);
   }
   else if (pattern_name == "background")
   {
@@ -154,7 +155,7 @@ TrafficPattern *TrafficPattern::New(string const &pattern, long long int nodes,
     }
     result = new BadPermDFlyTrafficPattern(nodes, k, n);
   }
-  else if ((pattern_name == "tornado") || (pattern_name == "neighbor") ||
+  else if ((pattern_name == "tornado") || (pattern_name == "neighbor") || (pattern_name == "nonuniform") ||
            (pattern_name == "badperm_yarc"))
   {
     bool missing_params = false;
@@ -218,6 +219,10 @@ TrafficPattern *TrafficPattern::New(string const &pattern, long long int nodes,
     else if (pattern_name == "neighbor")
     {
       result = new NeighborTrafficPattern(nodes, k, n, xr);
+       printf("The total Number of nodes is : %lld\n",nodes);
+    }else if (pattern_name == "nonuniform")
+    {
+      result = new NonUniformTrafficPattern(nodes, k, n, xr);
     }
     else if (pattern_name == "badperm_yarc")
     {
@@ -385,6 +390,39 @@ long long int NeighborTrafficPattern::dest(long long int source)
     offset *= (_xr * _k);
   }
   return result;
+}
+
+//non uniform
+NonUniformTrafficPattern::NonUniformTrafficPattern(long long int nodes, long long int k, long long int n, long long int xr)
+    : DigitPermutationTrafficPattern(nodes, k, n, xr)
+{
+}
+
+long long int NonUniformTrafficPattern::dest(long long int source)
+{
+
+  assert((source >= 0) && (source < _nodes));
+
+  long long int partion = RandomInt(99);
+  if (partion >= 25)
+  {
+    //case 1
+    long long int offset = 1;
+    long long int result = 0;
+
+    for (long long int n = 0; n < _n; ++n)
+    {
+      result += offset *
+                (((source / offset) % (_xr * _k) + 1) % (_xr * _k));
+      offset *= (_xr * _k);
+    }
+    return result;
+  }
+  else
+  {
+    //case 2
+    return RandomInt(_nodes - 1);
+  }
 }
 
 RandomPermutationTrafficPattern::RandomPermutationTrafficPattern(long long int nodes,
